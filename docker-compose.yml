@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  db:
+    container_name: usersdb
+    image: mongo
+    hostname: db
+    environment:
+      GET_HOST_FROM: dns
+      MONGO_DB: users-dev
+      MONGO_USER: mongodb-dev
+      MONGO_PASSWORD: mysecretpassword
+    ports:
+      - 27018:27017
+    networks:
+      - usersnet
+
+  usersapi:
+    container_name: usersapi
+    image: fiodarsiniauski/usersapi:v1
+    hostname: usersapi
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      GET_HOSTS_FROM: dns
+    networks:
+      - usersnet
+    volumes:
+      - .:/go/src/users-api
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    labels:
+      kompose.service.type: loadbalancer
+
+networks:
+  usersnet:
+    driver: bridge

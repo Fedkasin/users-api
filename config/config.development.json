@@ -1,0 +1,9 @@
+{
+  "Port": 8080,
+
+  "DBHostname": "db",
+  "DBPort": 27017,
+  "DBUser": "mongodb-dev",
+  "DBPassword": "123123123",
+  "DbName": "users-dev"
+}
