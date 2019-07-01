@@ -34,6 +34,13 @@ func init() {
 		log.Println("Invalid %s config file!", ENV)
 		return
 	}
+	if (ENV != "local") {
+		config.Config.DBHostname = os.Getenv("MONGO_HOST")
+		config.Config.DbName = os.Getenv("MONGO_DB")
+		config.Config.DBPassword = os.Getenv("MONGO_PASSWORD")
+		config.Config.DBPort, err = strconv.Atoi(os.Getenv(("MONGO_PORT")))
+		config.Config.DBUser = os.Getenv("MONGO_USER")
+	}
 }
 
 func main() {

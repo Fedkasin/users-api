@@ -11,3 +11,13 @@ type Configuration struct {
 }
 
 var Config = new(Configuration)
+
+const SampleConfig = `{
+	"Port": 8080,     // application port
+
+  	"DBHostname": "", // mongo hostname
+  	"DBPort": ,       // mongo port
+  	"DBUser": "",     // mongo user
+  	"DBPassword": "", // mongo password
+  	"DbName": ""      // mongo database name
+}`

@@ -8,11 +8,13 @@ services:
     hostname: db
     environment:
       GET_HOST_FROM: dns
+      MONGO_HOST: db
       MONGO_DB: users-dev
       MONGO_USER: mongodb-dev
+      MONGO_PORT: 21017
       MONGO_PASSWORD: mysecretpassword
     ports:
-      - 27018:27017
+      - 27017:27017
     networks:
       - usersnet
 
