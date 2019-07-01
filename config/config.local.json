@@ -1,9 +1,0 @@
-{
-  "Port": 8080,
-
-  "DBHostname": "localhost",
-  "DBPort": 27017,
-  "DBUser": "mongodb-local",
-  "DBPassword": "123123123",
-  "DbName": "users-local"
-}
