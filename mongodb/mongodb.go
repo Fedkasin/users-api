@@ -22,7 +22,7 @@ var conf = config.Config
 func Initialize() {
 	var err error
 
-	ctx, _ := context.WithTimeout(context.Background(), 1000*time.Second)
+	ctx, _ := context.WithTimeout(context.Background(), 10000*time.Second)
 	Client, err = mongo.Connect(ctx, "mongodb://" + conf.DBHostname + ":" + strconv.Itoa(conf.DBPort))
 	if err != nil {
 		log.Fatal(err)

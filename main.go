@@ -7,8 +7,6 @@ import (
 	"os"
 	"strconv"
 
-	//"time"
-
 	"github.com/Fedkasin/users-api/config"
 	"github.com/Fedkasin/users-api/mongodb"
 	"github.com/Fedkasin/users-api/router"
@@ -17,30 +15,24 @@ import (
 var conf = config.Config
 
 func init() {
-	
-	ENV := os.Getenv("ENVIRONMENT")
-	if len(ENV) == 0 {
-		ENV = "local"
+	env := os.Getenv("ENVIRONMENT")
+
+	if len(env) == 0 {
+		env = "local"
 	}
 
-	file, err := os.Open("./config/config." + ENV +".json")
+	file, err := os.Open("./config/config." + env +".json")
 	if err != nil {
-		log.Println("Cannot find %s config file!", ENV)
+		log.Println("Cannot find " + env + " config file!")
 		return
 	}
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config.Config)
 	if err != nil {
-		log.Println("Invalid %s config file!", ENV)
+		log.Println("Invalid %s config file!", env)
 		return
 	}
-	if (ENV != "local") {
-		config.Config.DBHostname = os.Getenv("MONGO_HOST")
-		config.Config.DbName = os.Getenv("MONGO_DB")
-		config.Config.DBPassword = os.Getenv("MONGO_PASSWORD")
-		config.Config.DBPort, err = strconv.Atoi(os.Getenv(("MONGO_PORT")))
-		config.Config.DBUser = os.Getenv("MONGO_USER")
-	}
+	log.Println(config.Config)
 }
 
 func main() {

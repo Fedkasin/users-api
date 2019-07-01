@@ -6,13 +6,6 @@ services:
     container_name: usersdb
     image: mongo
     hostname: db
-    environment:
-      GET_HOST_FROM: dns
-      MONGO_HOST: db
-      MONGO_DB: users-dev
-      MONGO_USER: mongodb-dev
-      MONGO_PORT: 21017
-      MONGO_PASSWORD: mysecretpassword
     ports:
       - 27017:27017
     networks:
@@ -26,11 +19,11 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
     environment:
-      GET_HOSTS_FROM: dns
+      ENVIRONMENT: development
     networks:
       - usersnet
     volumes:
-      - .:/go/src/users-api
+      - .:/go/src/github.com/Fedkasin/users-api/
     ports:
       - 8080:8080
     depends_on:
