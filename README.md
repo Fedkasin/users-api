@@ -14,4 +14,4 @@
 3. Run:
 - Via Docker `docker-compose up -d`
 - `go run main.go`
-- Or compile and run `go install && go run users-api`
+- Or compile and run `go install && /go/bin/users-api`
